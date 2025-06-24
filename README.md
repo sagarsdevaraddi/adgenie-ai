@@ -6,7 +6,7 @@ AdGenie AI is a free SaaS project that helps marketers and businesses generate A
 
 ## 📸 Preview
 
-> ![Homepage Preview](./preview.png)  
+> ![Homepage Preview](./public/preview.png)
 > _A futuristic 3D landing page powered by Tailwind CSS + Next.js_
 
 ---
