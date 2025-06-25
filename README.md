@@ -58,10 +58,9 @@ Caption: <short 1-line copy>
 Product: GlowSkin Serum
 
 
-📁 Folder Structure
-graphql
-Copy
-Edit
+### 📁 Folder Structure:
+
+
 adgenie-ai/
 ├── app/
 │   ├── page.tsx              # Landing page (3D UI + input form)
@@ -82,7 +81,7 @@ git clone https://github.com/sagarsdevaraddi/adgenie-ai.git
 cd adgenie-ai
 
 
-upcoming.......
+ ### upcoming.......
 | Feature                       | Tool/Service                                                         | Price |
 | ----------------------------- | -------------------------------------------------------------------- | ----- |
 | 🔐 Login (Google Auth)        | [NextAuth.js](https://next-auth.js.org/) + Google OAuth              | Free  |
