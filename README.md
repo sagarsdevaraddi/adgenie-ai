@@ -58,9 +58,11 @@ Caption: <short 1-line copy>
 Product: GlowSkin Serum
 
 
-### 📁 Folder Structure:
+---
 
+## 📁 Folder Structure
 
+```text
 adgenie-ai/
 ├── app/
 │   ├── page.tsx              # Landing page (3D UI + input form)
@@ -76,12 +78,21 @@ adgenie-ai/
 ├── tailwind.config.ts        # Tailwind customization
 ├── tsconfig.json             # TypeScript settings
 └── README.md
+```
 
+---
+
+## 🚦 Getting Started
+
+```bash
 git clone https://github.com/sagarsdevaraddi/adgenie-ai.git
 cd adgenie-ai
+```
 
+---
 
- ### upcoming.......
+## 🔮 Upcoming Features
+
 | Feature                       | Tool/Service                                                         | Price |
 | ----------------------------- | -------------------------------------------------------------------- | ----- |
 | 🔐 Login (Google Auth)        | [NextAuth.js](https://next-auth.js.org/) + Google OAuth              | Free  |
