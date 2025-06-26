@@ -1,53 +1,66 @@
-"use client";
-import { useState } from "react";
+'use client';
 
-export default function Dashboard() {
-  const [product, setProduct] = useState("");
-  const [audience, setAudience] = useState("");
-  const [result, setResult] = useState("");
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+interface Ad {
+  id: string;
+  product: string;
+  headline: string;
+  caption: string;
+  createdAt: string;
+}
+
+export default function DashboardPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [ads, setAds] = useState<Ad[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    } else if (status === 'authenticated') {
+      fetchAds();
+    }
+  }, [status]);
+
+  async function fetchAds() {
+    try {
+      const res = await fetch('/api/my-ads');
+      const data = await res.json();
+      setAds(data);
+    } catch (error) {
+      console.error('Failed to fetch ads:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (status === 'loading' || loading) {
+    return <p className="p-6">Loading...</p>;
+  }
 
   return (
-    <main className="max-w-xl mx-auto p-6">
-      <h2 className="text-2xl font-semibold mb-4">Ad Copy Generator</h2>
-
-      <div className="mb-4">
-        <label className="block font-medium">Product/Service:</label>
-        <input
-          type="text"
-          className="w-full border p-2 rounded"
-          value={product}
-          onChange={(e) => setProduct(e.target.value)}
-          placeholder="e.g. Yoga classes for busy moms"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block font-medium">Target Audience:</label>
-        <input
-          type="text"
-          className="w-full border p-2 rounded"
-          value={audience}
-          onChange={(e) => setAudience(e.target.value)}
-          placeholder="e.g. Women age 25–40"
-        />
-      </div>
-
-      <button
-        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        onClick={() =>
-          setResult("✨ Ad Copy: Get fit with yoga — made for moms like you!")
-        }
-      >
-        Generate Ad Copy
-      </button>
-
-      {result && (
-  <div className="mt-6 bg-gray-100 p-4 rounded shadow text-gray-800">
-    <h4 className="font-bold mb-2 text-black">Result:</h4>
-    <p>{result}</p>
-  </div>
-)}
-
-    </main>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Your Ads</h1>
+      {ads.length === 0 ? (
+        <p>No ads created yet.</p>
+      ) : (
+        <ul className="space-y-4">
+          {ads.map((ad) => (
+            <li key={ad.id} className="p-4 border rounded shadow bg-lightblue">
+              <h2 className="text-xl font-semibold">{ad.headline}</h2>
+              <p className="text-blue-700">{ad.caption}</p>
+              <p className="text-sm text-green-500 mt-2">
+                Product: {ad.product} • Created At:{' '}
+                {new Date(ad.createdAt).toLocaleString()}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }

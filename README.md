@@ -1,6 +1,8 @@
-# 🚀 AdGenie AI – Phase 1
+# 🚀 AdGenie AI – Phase 3 Completed
 
-AdGenie AI is a free SaaS project that helps marketers and businesses generate AI-powered ad content and conduct market research from internet data. This is **Phase 1** of the project, which features a futuristic 3D interactive landing page built with modern frontend technologies.
+AdGenie AI is a free SaaS platform that empowers marketers and businesses to generate high-converting ad content and conduct market research using AI — powered entirely by free tools and APIs.
+
+✅ This is **Phase 3** – Fully Functional Auth, DB, Dashboard, Deployment!
 
 ---
 
@@ -13,43 +15,62 @@ AdGenie AI is a free SaaS project that helps marketers and businesses generate A
 
 ## 🛠️ Built With
 
-| Tech         | Description                                |
-|--------------|--------------------------------------------|
-| **Next.js 14** | React framework with App Router for routing |
-| **Tailwind CSS** | Utility-first modern CSS styling         |
-| **TypeScript** | Type-safe and scalable frontend & backend |
-| **OpenRouter.ai** | Free AI API proxy for OpenAI/Claude-like models |
-| **Git & GitHub** | Source control + versioning             |
+| Tech             | Description                                |
+|------------------|--------------------------------------------|
+| **Next.js 14**   | React framework with App Router            |
+| **Tailwind CSS** | Utility-first modern CSS styling           |
+| **TypeScript**   | Type-safe frontend & backend               |
+| **NextAuth.js**  | Authentication with Google OAuth           |
+| **MongoDB Atlas**| Cloud database for storing user ads        |
+| **Prisma ORM**   | Connects Next.js to MongoDB                |
+| **OpenRouter.ai**| Free AI API proxy (like OpenAI)            |
+| **Vercel**       | CI/CD + Hosting                            |
+| **Git & GitHub** | Source control + versioning                |
 
 ---
+### Folder structure
+adgenie-ai/
+├── app/
+│   ├── page.tsx              # Landing + input form
+│   ├── dashboard/page.tsx    # Authenticated dashboard
+│   ├── layout.tsx            # App-wide layout with auth wrapper
+│   └── api/
+│       └── generate/         # POST API: OpenRouter call
+│       └── auth/[...nextauth]/ # Auth endpoints
+├── components/
+│   ├── AuthButtons.tsx       # Login / Logout button
+│   └── SessionWrapper.tsx    # Wraps with SessionProvider
+├── prisma/
+│   └── schema.prisma         # MongoDB models
+├── styles/
+│   └── globals.css           # Tailwind base
+├── public/
+│   └── preview.png           # Preview image
+├── .env.local                # Environment variables
+├── tailwind.config.ts        # Tailwind theme config
+├── tsconfig.json             # TypeScript config
+└── README.md
 
-## ✨ Features
+---
+## ✨ Phase 3 Features
 
-- 🎯 3D animated landing page with real-time mouse tilt effects  
-- 🎨 Responsive, glassmorphism-based modern UI  
-- 🧑‍💻 Built with App Router and TypeScript for scalability  
-- 🔗 Link to `/dashboard` (Phase 2 ready)  
-- 📁 Clean folder structure for enterprise-level growth
+- ✅ 3D landing page with product input
+- ✅ Google login/logout using NextAuth.js
+- ✅ Save generated ads to MongoDB per user
+- ✅ Dashboard to view user-specific saved ads
+- ✅ Auth-protected routes
+- ✅ Responsive UI using Tailwind CSS
 
 ---
 
 ## 🧠 AI API Integration
 
-This project uses the **OpenRouter.ai API** to generate ad content for a given product or brand.
+This project uses **OpenRouter.ai API** to generate ad content like:
 
-### 🔍 How it works:
-1. When a user submits a product name, it is sent to the backend API (`/api/generate`)
-2. The backend calls OpenRouter's `/v1/chat/completions` endpoint
-3. A custom prompt is passed to generate:
-   - **Headline**: Attention-grabbing ad title  
-   - **Caption**: Short description/CTA  
-4. The AI response is extracted and shown in the UI
+- 🎯 **Headline** (Catchy title)
+- ✍️ **Caption** (1-line marketing copy)
 
-### ✅ Free AI Model Used:
-- **Model:** `mistralai/mixtral-8x7b-instruct` (fast & free)
-- **API:** `https://openrouter.ai/api/v1/chat/completions`
-
-### 📦 Sample Prompt Sent:
+### 📦 Prompt Example
 ```txt
 Generate an ad in this format:
 Headline: <your catchy title>
@@ -57,47 +78,8 @@ Caption: <short 1-line copy>
 
 Product: GlowSkin Serum
 
-
----
-
-## 📁 Folder Structure
-
-```text
-adgenie-ai/
-├── app/
-│   ├── page.tsx              # Landing page (3D UI + input form)
-│   ├── dashboard/            # (Phase 2: Ad history view)
-│   └── layout.tsx            # Global layout component
-├── app/api/generate/
-│   └── route.ts              # API route using OpenRouter AI
-├── styles/
-│   └── globals.css           # Global CSS (Tailwind base)
-├── public/
-│   └── preview.png           # Homepage preview image
-├── .env.local                # API key env vars
-├── tailwind.config.ts        # Tailwind customization
-├── tsconfig.json             # TypeScript settings
-└── README.md
-```
-
----
-
-## 🚦 Getting Started
-
-```bash
 git clone https://github.com/sagarsdevaraddi/adgenie-ai.git
 cd adgenie-ai
-```
+npm install
 
----
 
-## 🔮 Upcoming Features
-
-| Feature                       | Tool/Service                                                         | Price |
-| ----------------------------- | -------------------------------------------------------------------- | ----- |
-| 🔐 Login (Google Auth)        | [NextAuth.js](https://next-auth.js.org/) + Google OAuth              | Free  |
-| 💾 Database                   | [MongoDB Atlas (Free Tier)](https://www.mongodb.com/cloud/atlas)     | Free  |
-| 🔧 ORM for DB                 | [Prisma](https://www.prisma.io/)                                     | Free  |
-| 🧾 Export ads to text/PDF/CSV | Native browser features + [jsPDF](https://github.com/parallax/jsPDF) | Free  |
-| 💻 Hosting & CI/CD            | [Vercel (Free Tier)](https://vercel.com)                             | Free  |
-| 🧠 AI Backend                 | [OpenRouter.ai (Free API)](https://openrouter.ai)                    | Free  |

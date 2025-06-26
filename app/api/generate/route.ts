@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,7 +12,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing product name' }, { status: 400 });
     }
 
-    // AI Prompt
+    // 🧠 Prompt for AI
     const prompt = `
 Generate an ad in this format:
 
@@ -20,17 +23,17 @@ Product: ${productName}
 Only return the Headline and Caption.
 `;
 
-    // OpenRouter API call
+    // 🔗 OpenRouter API Request
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': 'http://localhost:3000', // Required by OpenRouter
+        'HTTP-Referer': 'http://localhost:3000',
         'X-Title': 'AdGenie AI',
       },
       body: JSON.stringify({
-        model: 'mistralai/mixtral-8x7b-instruct', // or 'anthropic/claude-3-haiku'
+        model: 'mistralai/mixtral-8x7b-instruct',
         messages: [{ role: 'user', content: prompt }],
         temperature: 0.7,
       }),
@@ -49,24 +52,45 @@ Only return the Headline and Caption.
     const output = result.choices?.[0]?.message?.content?.trim() || '';
     console.log('🧠 AI Output:', output);
 
-    // ✅ Safe split-based logic
+    // ✅ Safe parsing
     let headline = '';
     let caption = '';
 
     if (output.includes('Headline:') && output.includes('Caption:')) {
       const parts = output.split('Caption:');
-      const headlinePart = parts[0].replace('Headline:', '').trim();
-      const captionPart = parts[1].trim();
-      headline = headlinePart;
-      caption = captionPart;
+      headline = parts[0].replace('Headline:', '').trim();
+      caption = parts[1].trim();
     } else {
       caption = output;
       console.warn('⚠️ Unexpected AI format. Used full output as caption.');
     }
+    // ✅ Get logged-in user's email
+    const session = await getServerSession(authOptions);
+const userEmail = session?.user?.email;
 
-    return NextResponse.json({ result: { headline, caption } });
+    if (!userEmail) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    // 💾 Save to MongoDB (placeholder user until login is added)
+    const savedAd = await prisma.ad.create({
+      data: {
+        userEmail:userEmail,
+        product: productName,
+        headline,
+        caption,
+      },
+    });
+
+    return NextResponse.json({
+      result: {
+        headline,
+        caption,
+        savedId: savedAd.id,
+      },
+    });
   } catch (error) {
     console.error('🔥 Server Error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+
