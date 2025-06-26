@@ -2,7 +2,8 @@
 
 import { signIn } from 'next-auth/react';
 
-const handleGoogleSignIn = () => {
+const handleGoogleSignIn = (e: React.MouseEvent<HTMLButtonElement>) => {
+   e.preventDefault();
   signIn('google', { callbackUrl: '/login' });
 };
 
