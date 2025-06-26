@@ -4,7 +4,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import { NextAuthOptions } from "next-auth";
 
-import { Session } from "next-auth";
+
 
 declare module "next-auth" {
   interface Session {

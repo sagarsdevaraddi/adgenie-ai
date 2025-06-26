@@ -13,7 +13,7 @@ interface Ad {
 }
 
 export default function DashboardPage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const [ads, setAds] = useState<Ad[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ export default function DashboardPage() {
     } else if (status === 'authenticated') {
       fetchAds();
     }
-  }, [status]);
+  }, [status,router]);
 
   async function fetchAds() {
     try {
