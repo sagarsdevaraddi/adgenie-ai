@@ -82,4 +82,17 @@ git clone https://github.com/sagarsdevaraddi/adgenie-ai.git
 cd adgenie-ai
 npm install
 
+|Upcoming Features                    | Description                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------- |
+| 📊 **User Analytics**       | Show total ads generated, last login, most used product name, etc. on dashboard          |
+| 📁 **Export Ads**           | Let users download ad copy as `.txt` or `.pdf` (using libraries like `jsPDF`)            |
+| 🧠 **Prompt Tone Selector** | Add UI to let users choose tone (e.g., funny, professional, Gen Z) and pass it to prompt |
+| 🔍 **Search & Filter Ads**  | Search saved ads by product name or date                                                 |
+| 📝 **Edit Saved Ads**       | Inline editing of headline/caption in dashboard (optional modal/pop-up)                  |
+| 🗑️ **Delete Ads**          | Let users delete specific ads from dashboard                                             |
+| 📥 **Copy to Clipboard**    | Add a copy icon/button to quickly copy ad content                                        |
+| 🎨 **Theme Mode**           | Add light/dark mode toggle (using `next-themes`)                                         |
+| 🧪 **Test & Polish**        | Add loading states, error handling, and improve UX                                       |
+| 📤 **Shareable Links**      | Generate unique shareable link for each ad (optional)                                    |
+
 
