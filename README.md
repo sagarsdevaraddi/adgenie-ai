@@ -82,17 +82,17 @@ git clone https://github.com/sagarsdevaraddi/adgenie-ai.git
 cd adgenie-ai
 npm install
 
-|Upcoming Features                    | Description                                                                              |
-| --------------------------- | ---------------------------------------------------------------------------------------- |
-| 📊 **User Analytics**       | Show total ads generated, last login, most used product name, etc. on dashboard          |
-| 📁 **Export Ads**           | Let users download ad copy as `.txt` or `.pdf` (using libraries like `jsPDF`)            |
-| 🧠 **Prompt Tone Selector** | Add UI to let users choose tone (e.g., funny, professional, Gen Z) and pass it to prompt |
-| 🔍 **Search & Filter Ads**  | Search saved ads by product name or date                                                 |
-| 📝 **Edit Saved Ads**       | Inline editing of headline/caption in dashboard (optional modal/pop-up)                  |
-| 🗑️ **Delete Ads**          | Let users delete specific ads from dashboard                                             |
-| 📥 **Copy to Clipboard**    | Add a copy icon/button to quickly copy ad content                                        |
-| 🎨 **Theme Mode**           | Add light/dark mode toggle (using `next-themes`)                                         |
-| 🧪 **Test & Polish**        | Add loading states, error handling, and improve UX                                       |
-| 📤 **Shareable Links**      | Generate unique shareable link for each ad (optional)                                    |
+## 🔮 Upcoming Features
 
-
+| Feature                        | Description                                                                                   |
+|-------------------------------|-----------------------------------------------------------------------------------------------|
+| 📊 **User Analytics**         | Display total ads generated, last login time, and most-used product on the user dashboard     |
+| 📁 **Export Ads**             | Allow users to export ad content as `.txt` or `.pdf` files using `jsPDF` or similar tools     |
+| 🧠 **Prompt Tone Selector**   | Add a dropdown to choose ad tone (e.g., Funny, Professional, Gen Z) and include it in prompts |
+| 🔍 **Search & Filter Ads**    | Enable filtering and searching of saved ads by product name or date                          |
+| 📝 **Edit Saved Ads**         | Allow users to edit ad headlines and captions directly from the dashboard                    |
+| 🗑️ **Delete Ads**            | Provide the ability to delete specific ads from the user’s dashboard                         |
+| 📥 **Copy to Clipboard**      | Add one-click copy functionality for ad content                                              |
+| 🎨 **Theme Mode**             | Implement light/dark mode toggle using `next-themes`                                         |
+| 🧪 **Test & Polish**          | Improve user experience with better loading states, error handling, and UI polish            |
+| 📤 **Shareable Links**        | Generate unique, shareable links for each ad (optional)                                      |
